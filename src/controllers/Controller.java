@@ -19,19 +19,54 @@ public class Controller implements Initializable {
 
     public DAO dbConnect = new DBConnect();
 
+    /**
+     * лист содержащий список материалов группы стройматериалы
+     */
     ArrayList<Material> materials1 = new ArrayList<>(); //лист содержащий список материалов группы стройматериалы
+    /**
+     * лист содержащий список материалов группы отделочные материалы
+     */
     ArrayList<Material> materials2 = new ArrayList<>();//лист содержащий список материалов группы отделочные материалы
+    /**
+     * лист содержащий список материалов группы мебель
+     */
     ArrayList<Material> materials3 = new ArrayList<>();//лист содержащий список материалов группы мебель
+    /**
+     * лист содержащий все материалы по трем группам
+     */
     ArrayList<Material> allMaterials = new ArrayList<>();//лист содержащий все материалы по трем группам
     public ListView listView;
+    /**
+     * поле для ввода объема
+     */
     public TextField V; //поле для ввода объема
+    /**
+     * поле для ввода температуры
+     */
     public TextField t; //поле для ввода температуры
+    /**
+     * выбор группы строительного материала
+     */
     public ComboBox GSM; //выбор группы строительного материала
+    /**
+     * поле для ввода площади
+     */
     public TextField S; //поле для ввода площади
+    /**
+     * выбор строительного материала
+     */
     public ComboBox SM; //выбор строительного материала
+    /**
+     * выбор марки строительного материала
+     */
     public ComboBox mark;//выбор марки строительного материала
     Pipe pipe;
 
+    /**
+     * метод срабатывает автоматически при запуске программы, в данном методе производится выборка названий строительных конструкций из базы данных и эти названия записываются в GSM
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ResultSet rez = null;
@@ -56,6 +91,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * метод для добавления в listView  а так же в лист материалов
+     */
     public void add() { //метод для добавления в listView  а так же в лист материалов
         try {
             double ss = Double.parseDouble(S.getText());
@@ -74,6 +112,11 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * метод для отбора строительного материала в зависимости от выбранной группы строительного материала
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void selectMaterials() throws SQLException, ClassNotFoundException { //метод для отбора строительного материала в зависимости от выбранной группы
         SM.getItems().clear();
         ResultSet rez;
@@ -83,6 +126,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * метод для расчета
+     */
     public void calculateREZ() {//метод для расчета
         try{
             listView.getItems().clear();
@@ -113,6 +159,9 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * удаление элементов из listView, а так же из листа материалов
+     */
     public void delete() {//удаление элементов из  listView и листа материалов
         try {
             int x = listView.getSelectionModel().getSelectedIndex();
@@ -142,6 +191,11 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * метод для отбора марки в зависимости от выбранного строительного материала
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void selectMark() throws SQLException, ClassNotFoundException {
         mark.getItems().clear();
         ResultSet rez;
@@ -151,6 +205,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * вывод результата в текстовый файл
+     */
     public void saveTxt() {//вывод результата в текстовый файл
         try {
             Files.write(Paths.get("demo.txt"), pipe.calculate(listView.getItems()), StandardOpenOption.CREATE);

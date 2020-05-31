@@ -7,8 +7,17 @@ import java.util.List;
 
 public class Pipe {
 
+    /**
+     * Переменная: лист фильтров
+     */
     private List<Filter> filters = new ArrayList<>();
+    /**
+     * Переменная: список содержащий таблицы со значениями экземпляров классов химически элементов
+     */
     private ArrayList<ArrayList<ChemicalSubstance>> tables = new ArrayList<>();
+    /**
+     * Переменная: лист химических веществ
+     */
     private ArrayList<ChemicalSubstance> chemicalSubstances;
 
     public Pipe(ArrayList<ChemicalSubstance> chemicalSubstances, Filter... filters) { //Передача фильтров автоматический массив [] (insertion - входное число)
@@ -16,6 +25,11 @@ public class Pipe {
         this.filters.addAll(Arrays.asList(filters));
     }
 
+    /**
+     * метод для вызова фильтров, передает результат из текущего фильтра в последующий
+     * @param massiv
+     * @return
+     */
     public ObservableList<String> calculate(ObservableList<String> massiv) {
         DecimalFormat df = new DecimalFormat("#.000");
         if (filters.size() == 3) {

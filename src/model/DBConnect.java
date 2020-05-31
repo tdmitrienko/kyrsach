@@ -2,13 +2,32 @@ package model;
 import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;
 
+/**
+ * Класс для работы с базой данных
+ */
 public class DBConnect implements DAO{
+    /**
+     * Переменная: подключение драйвера базы данных
+     */
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    /**
+     * Переменная: для подключения к базе данных
+     */
     private static final String DB_CONNECTION ="jdbc:mysql://localhost:3306/BuildingConstruction" ;
+    /**
+     * Переменная: пользователь базы данных
+     */
     private static final String DB_USER = "root";
+    /**
+     * Переменная: пароль от базы данных
+     */
     private static final String DB_PASSWORD = "1234";
 
 
+    /**
+     * метод для создания соединения
+     * @return
+     */
     //создание соединения
     private static Connection getDBConnection() {
         Connection dbConnection = null;
@@ -23,6 +42,10 @@ public class DBConnect implements DAO{
     }
 
 
+    /**
+     * метод для создания базы данных
+     * @throws SQLException
+     */
     // создание БД
     public static void createDbUserTable() throws SQLException {
         Connection dbConnection = null;
@@ -86,6 +109,12 @@ public class DBConnect implements DAO{
         }
     }
 
+    /**
+     * метод для выполнения запросов к базе данных
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     // выполнение запроса к БД с получением данных
     public static ResultSet dbExecuteQuery(String query) throws SQLException {
         Connection dbConnection = null;
@@ -118,6 +147,11 @@ public class DBConnect implements DAO{
         return crs;
     }
 
+    /**
+     * метод для обновления базы данных
+     * @param sqlStmt
+     * @throws SQLException
+     */
     // обновление БД
     public static void dbExecuteUpdate(String sqlStmt) throws SQLException{
         Connection dbConnection = null;
