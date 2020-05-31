@@ -2,8 +2,16 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Класс для рассчета совокупного выделения по каждому химическому элементу
+ */
 public class FilterPDK implements Filter{
 
+    /**
+     * Фильтр: рассчет совокупного выделения по каждому химическому элементу
+     * @param x
+     * @return
+     */
     @Override
     public ArrayList<ChemicalSubstance> filter(ArrayList<ChemicalSubstance> x) {
         for (int i = 0; i < x.size(); i++)
@@ -16,5 +24,4 @@ public class FilterPDK implements Filter{
             }
         return x;
     }
-
 }

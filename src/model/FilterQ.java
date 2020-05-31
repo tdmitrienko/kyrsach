@@ -1,20 +1,41 @@
 package model;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Класс для расчета выделения химического вещества
+ */
 public class FilterQ implements Filter {
 
+    /**
+     * Переменная: список строительных конструкций
+     */
     private final ArrayList<Construction> constructions;
+    /**
+     * Переменная: список химических элементов
+     */
     private ArrayList<ChemicalSubstance> chemicalSubstances = new ArrayList<>();
+    /**
+     * Переменная: для работы с базой данных
+     */
     private DAO dataBase;
 
+    /**
+     * Конструктор класса
+     * @param constructions
+     * @param dataBase
+     */
     public FilterQ(ArrayList<Construction> constructions, DAO dataBase) {
         this.constructions = constructions;
         this.dataBase = dataBase;
     }
 
+    /**
+     * Фильтр для расчета выделения химического вещества
+     * @param x
+     * @return
+     */
     @Override
     public ArrayList<ChemicalSubstance> filter(ArrayList<ChemicalSubstance> x) {
         constructions.forEach(construction -> {
