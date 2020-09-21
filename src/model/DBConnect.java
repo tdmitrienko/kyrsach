@@ -36,7 +36,6 @@ public class DBConnect implements DAO{
             return dbConnection;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("хуйня");
         }
         return dbConnection;
     }
